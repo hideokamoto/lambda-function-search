@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "author": "hideokamoto @hideokamoto",
   "bin": {
-    "lambda-function-search": "./bin/run"
+    "lambda-function-search": "./bin/run",
+    "lfs": "./bin/run"
   },
   "bugs": "https://github.com/hideokamoto/lambda-function-search/issues",
   "dependencies": {

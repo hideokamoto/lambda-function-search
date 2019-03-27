@@ -21,6 +21,11 @@ class LambdaFunctionSearch extends Command {
       char: 'r',
       description: 'region'
     }),
+    showAll: flags.boolean({
+      char: 'A',
+      description: 'Show all function data',
+      default: false
+    }),
   }
   async listAllFunctions(query: ISearchQuery = {}, functions: Lambda.FunctionList = []): Promise<Lambda.FunctionList> {
     if (!this.client) {
@@ -56,8 +61,10 @@ class LambdaFunctionSearch extends Command {
     try {
       const result = await this.listAllFunctions(query)
       this.log(`${chalk.green('Matched Functions')}: ${result.length} / ${this.amount}`)
+      this.log('====')
       result.forEach(item => {
         this.log(item.FunctionName)
+        if (flags.showAll) console.log(item)
       })
     } catch (e) {
       this.error(chalk.red(e))

@@ -12,4 +12,29 @@ Search your Lambda functions
 # Usage
 <!-- usage -->
 # Commands
-<!-- commands -->
+
+## List all Function
+```bash
+$ lfs --region us-east-1
+Matched Functions: 5 / 5
+====
+ContactFormLambda
+serverlessContactForm
+HelloAlexa
+Example
+ServerlessTest
+```
+
+## Search by Runtime
+
+```bash
+$ lfs --region us-east-1 --runtime nodejs6.10 
+Search condition: Runtime === nodejs6.10
+Matched Functions: 5 / 43
+====
+ContactFormLambda
+serverlessContactForm
+HelloAlexa
+Example
+ServerlessTest
+```
