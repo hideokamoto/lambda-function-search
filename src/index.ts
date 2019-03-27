@@ -16,10 +16,15 @@ class LambdaFunctionSearch extends Command {
     help: flags.help({char: 'h'}),
     // runtime
     runtime: flags.string({char: 'R', description: 'Lambda runtime'}),
-    // region
+    // [For AWS SDK] region
     region: flags.string({
       char: 'r',
       description: 'region'
+    }),
+    // [For AWS SDK] profile
+    profile: flags.string({
+      char: 'p',
+      description: 'AWS CLI profile'
     }),
     showAll: flags.boolean({
       char: 'A',
