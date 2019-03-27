@@ -2,7 +2,7 @@
   "name": "lambda-function-search",
   "description": "Search your Lambda functions",
   "version": "0.0.0",
-  "author": "hideokamoto @hideokamoto",
+  "author": "Hidetaka Okamoto <info@wp-kyoto.net> (https://wp-kyoto.net)",
   "bin": {
     "lambda-function-search": "./bin/run",
     "lfs": "./bin/run"
@@ -34,7 +34,8 @@
   ],
   "homepage": "https://github.com/hideokamoto/lambda-function-search",
   "keywords": [
-    "oclif"
+    "lambda",
+    "cli"
   ],
   "license": "MIT",
   "main": "lib/index.js",
