@@ -19,6 +19,7 @@
     "@types/mocha": "^5",
     "@types/node": "^10",
     "aws-sdk": "^2.429.0",
+    "chalk": "^2.4.2",
     "ts-node": "^7",
     "tslint": "^5",
     "typescript": "^3.0"
