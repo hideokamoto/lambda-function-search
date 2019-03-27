@@ -1,5 +1,5 @@
 import {Command, flags} from '@oclif/command'
-import { Lambda } from 'aws-sdk'
+import { Lambda, SharedIniFileCredentials } from 'aws-sdk'
 import chalk from 'chalk'
 
 type ISearchQuery = {
@@ -7,7 +7,7 @@ type ISearchQuery = {
 }
 
 class LambdaFunctionSearch extends Command {
-  static description = 'describe the command here'
+  static description = 'Search Lambda functions'
   private NextMarker: string = ''
   private amount: number = 0
   private client: Lambda | undefined
@@ -76,10 +76,14 @@ class LambdaFunctionSearch extends Command {
 
   async run() {
     const {flags} = this.parse(LambdaFunctionSearch)
-    const props: Lambda.Types.ClientConfiguration = {}
+    const props: Lambda.ClientConfiguration = {}
     if (!flags.region) this.log(chalk.yellow('warning') + ': Missing region')
     if (flags.region) props.region = flags.region
     this.client = new Lambda(props)
+    if (flags.profile) {
+      const credentials = new SharedIniFileCredentials({profile: flags.profile})
+      this.client.config.credentials = credentials
+    }
     const query: ISearchQuery = {}
     if (flags.runtime) {
       this.log(`${chalk.green('Search condition')}: Runtime === ${flags.runtime}`)
