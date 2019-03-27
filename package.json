@@ -18,6 +18,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^5",
     "@types/node": "^10",
+    "aws-sdk": "^2.429.0",
     "ts-node": "^7",
     "tslint": "^5",
     "typescript": "^3.0"
