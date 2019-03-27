@@ -3,7 +3,8 @@ import { Lambda, SharedIniFileCredentials } from 'aws-sdk'
 import chalk from 'chalk'
 
 type ISearchQuery = {
-  Runtime?: string
+  Runtime?: string,
+  name?: string
 }
 
 class LambdaFunctionSearch extends Command {
@@ -48,6 +49,10 @@ class LambdaFunctionSearch extends Command {
       char: 'p',
       description: 'AWS CLI profile'
     }),
+    search: flags.string({
+      char: 's',
+      description: 'search by name'
+    }),
     showAll: flags.boolean({
       char: 'A',
       description: 'Show all function data',
@@ -63,6 +68,10 @@ class LambdaFunctionSearch extends Command {
     const { NextMarker, Functions} = await this.client.listFunctions(params).promise()
     this.NextMarker = NextMarker || ''
     const targetFunctions = !Functions ? [] : Functions.filter(func => {
+      if (query.name) {
+        const reg = new RegExp(query.name)
+        if (func.FunctionName && !func.FunctionName.match(reg)) return false
+      }
       if (query.Runtime) return func.Runtime === query.Runtime
       return true
     })
@@ -88,6 +97,10 @@ class LambdaFunctionSearch extends Command {
     if (flags.runtime) {
       this.log(`${chalk.green('Search condition')}: Runtime === ${flags.runtime}`)
       query.Runtime = flags.runtime
+    }
+    if (flags.search) {
+      query.name = flags.search
+      this.log(`${chalk.green('Search condition')}: FunctionName contains ${flags.search}`)
     }
     try {
       const result = await this.listAllFunctions(query)
