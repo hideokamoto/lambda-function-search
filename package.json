@@ -1,7 +1,7 @@
 {
   "name": "lambda-function-search",
   "description": "Search your Lambda functions",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Hidetaka Okamoto <info@wp-kyoto.net> (https://wp-kyoto.net)",
   "bin": {
     "lambda-function-search": "./bin/run",
