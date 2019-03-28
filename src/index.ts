@@ -135,8 +135,10 @@ class LambdaFunctionSearch extends Command {
     props: Lambda.ClientConfiguration = {},
   ) {
     return await Promise.all(regions.map(region => {
-      props.region = region
-      return this.worker(query, props)
+      return this.worker(query, {
+        ...props,
+        region
+      })
     }))
   }
 

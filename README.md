@@ -58,6 +58,24 @@ Example
 ServerlessTest
 ```
 
+## List All Functions (ALL Regions)
+
+```bash
+$ lfs --region all
+=== Matched Functions: 5 / 5 ===
+Region : ap-northeast-2
+ContactFormLambda
+serverlessContactForm
+HelloAlexa
+Example
+ServerlessTest
+=== Matched Functions: 2 / 5 ===
+Region : ap-northeast-1
+ContactFormLambda
+serverlessContactForm
+...
+```
+
 ## Search by Runtime
 
 ```bash
