@@ -56,9 +56,11 @@
     "format:check": "biome format .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "posttest": "npm run lint && tsc -p . --noEmit",
+    "posttest": "pnpm run lint && tsc -p . --noEmit",
     "release": "np",
-    "test": "echo \"No tests yet\""
+    "test": "echo \"No tests yet\"",
+    "typecheck": "tsc -p . --noEmit"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "packageManager": "pnpm@10.34.9"
 }
