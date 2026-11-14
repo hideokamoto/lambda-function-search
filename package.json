@@ -1,7 +1,7 @@
 {
   "name": "lambda-function-search",
   "description": "Search your Lambda functions",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "Hidetaka Okamoto <info@wp-kyoto.net> (https://wp-kyoto.net)",
   "bin": {
     "lambda-function-search": "./bin/run",
@@ -9,24 +9,21 @@
   },
   "bugs": "https://github.com/hideokamoto/lambda-function-search/issues",
   "dependencies": {
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
-    "@oclif/plugin-help": "^2",
-    "aws-sdk": "^2.429.0",
-    "tslib": "^1"
+    "@aws-sdk/client-lambda": "^3.710.0",
+    "@aws-sdk/credential-providers": "^3.932.0",
+    "@oclif/core": "^4.0.0",
+    "chalk": "^4.1.2",
+    "tslib": "^2.8.0"
   },
   "devDependencies": {
-    "@oclif/tslint": "^1",
-    "@types/chai": "^4",
-    "@types/mocha": "^5",
-    "@types/node": "^10",
-    "chalk": "^2.4.2",
-    "ts-node": "^7",
-    "tslint": "^5",
-    "typescript": "^3.0"
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^18.19.0",
+    "np": "^10.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=18.0.0"
   },
   "files": [
     "/bin",
@@ -40,14 +37,30 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "lambda-function-search"
+    "bin": "lambda-function-search",
+    "commands": {
+      "strategy": "single",
+      "target": "./lib/index.js"
+    }
   },
-  "repository": "hideokamoto/lambda-function-search",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hideokamoto/lambda-function-search.git"
+  },
   "scripts": {
-    "posttest": "tsc -p . --noEmit && tslint -p . -t stylish",
-    "prepack": "rm -rf lib && tsc",
-    "prepare": "rm -rf lib && tsc",
-    "test": "echo NO TESTS"
+    "build": "rm -rf lib && tsc",
+    "prepack": "npm run build",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "posttest": "pnpm run lint && tsc -p . --noEmit",
+    "release": "np",
+    "test": "echo \"No tests yet\"",
+    "typecheck": "tsc -p . --noEmit"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "packageManager": "pnpm@10.34.9"
 }
