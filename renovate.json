@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on monday"],
+  "platformAutomerge": false,
+  "packageRules": [
+    {
+      "description": "Batch non-major devDependency updates into one PR and merge it once CI passes",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "devDependencies (non-major)",
+      "automerge": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "automerge": true
+  }
+}
