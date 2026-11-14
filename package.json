@@ -62,5 +62,10 @@
     "typecheck": "tsc -p . --noEmit"
   },
   "types": "lib/index.d.ts",
-  "packageManager": "pnpm@10.34.9"
+  "packageManager": "pnpm@10.34.9",
+  "pnpm": {
+    "overrides": {
+      "fast-xml-parser": "^5.12.0"
+    }
+  }
 }
